@@ -36,7 +36,12 @@ date || credit || debit || balance
 
 - Clients should be members of a bank
 - they each have an account
-- the balance should be saved in the client object and altered with deposit or withdraw functions. These take two arguments. A date and an amount.
-- the balance should be rendered after each function is called in the specified layout.
-- an initial grid/template is created to show the transactions
+- the balance should be saved in the client object and altered with deposit or withdraw functions. These take one argument. An amount. Date added on transaction
+- the balance could be rendered after each function is called in the specified layout.
+- an grid/template is created to show the transactions and final balance
 
+
+# Screenshots of CLI
+
+<img src="images/Screenshot 2022-03-26 at 00.49.24.png" alt="screen shot of CLI" width="400px"/>
+<img src="images/Screenshot 2022-03-26 at 00.50.19.png" alt="screen shot of CLI" width="400px"/>
