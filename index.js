@@ -2,16 +2,16 @@ import Client from './client.cjs'
 import boxen from 'boxen';
 import readline from 'readline';
 import chalk from 'chalk';
-import moment from 'moment';
 const rl = readline.createInterface({input: process.stdin,output: process.stdout});
 const optionsScript = '\n 1. Withdraw money\n 2. Deposit money\n 3. See statement\n 4. Show balance\n 5. Exit\n'
+const date = new Date
 
 
 const introQuestion = () => {
   return new Promise((resolve, reject) => {
     rl.question("", (answer) => {
-      console.log(`Nice to meet you, ${answer}. `)
-      user.nameClient(answer)
+      (!answer==="") ? user.nameClient(answer) : user.nameClient();
+      console.log(`Nice to meet you, ${user.getName()}. `)
       resolve()
     })
   })
@@ -45,13 +45,13 @@ const clientChoice = (input) => {
   if ((input) === '1') {
     rl.question('How much would you like to withdraw?\n', (amount) => {
       user.debitBalance(parseFloat(amount));
-      console.log(chalk.red(`withdrew £${amount} on ${moment().format('DD/MM/YYYY')}`));
+      console.log(chalk.red(`withdrew £${amount} on ${date.toLocaleDateString('en-Gb')}`));
       furtherAssistance()
     })
   } else if ((input) === '2') {
     rl.question('How much would you like to deposit?\n', (amount) => {
       user.creditBalance(parseFloat(amount));
-      console.log(chalk.green(`deposited £${amount} on ${moment().format('DD/MM/YYYY')}`));
+      console.log(chalk.green(`deposited £${amount} on ${date.toLocaleDateString('en-Gb')}`));
       furtherAssistance()
     })
   } else if ((input) === '3') {

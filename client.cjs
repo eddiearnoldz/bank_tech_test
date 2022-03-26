@@ -3,7 +3,7 @@ const date = new Date
 class Client {
   constructor(){
   this.balance = 0
-  this.name = 
+  this.name
   this.transactionHistory = []
   }
 
@@ -17,12 +17,16 @@ class Client {
     this.transactionHistory.unshift(`${date.toLocaleDateString('en-Gb')} || £${amount} || £${this.balance}`);
   }
 
-  nameClient = (name) => {
-    this.name = name
+  nameClient = (name = 'Private User') => {
+    return this.name = name;
+  }
+
+  getName() {
+    return this.name
   }
 
   getTransactionHistory = () => {
-    return this.transactionHistory
+    return this.transactionHistory;
   }
   
 }
