@@ -1,6 +1,11 @@
 # Bank tech test
 
-Today, you'll practice doing a tech test.
+### Specifications
+
+* You should be able to interact with your code via a REPL like IRB or Node.  (You don't need to implement a command line interface that takes input from STDIN.)
+* Deposits, withdrawal.
+* Account statement (date, amount, balance) printing.
+* Data can be kept in memory (it doesn't need to be stored to a database or anything).
 
 ## Requirements
 
@@ -10,12 +15,13 @@ Today, you'll practice doing a tech test.
 - To run the program type ```npm start```
 - To run the test suites type ```jest``` in the terminal
 
-### Specifications
+# Dependencies
 
-* You should be able to interact with your code via a REPL like IRB or Node.  (You don't need to implement a command line interface that takes input from STDIN.)
-* Deposits, withdrawal.
-* Account statement (date, amount, balance) printing.
-* Data can be kept in memory (it doesn't need to be stored to a database or anything).
+- To interact with the command line I used 'readline' which uses promises to wait for user input and then assess the next function.
+- I had included 'moment' in my dependencies but then realised I could use .toLocaleDateString(), a simpler and more appropriate approach
+- I used 'chalk' to colour the output green or red when account was debited or credited
+- I used Jest to test my code in unit tests for both classes
+- 'eslint' was used to clean up my code and ensure it was readable and followed standard javascript guidelines
 
 # Initial thoughts
 
@@ -34,22 +40,13 @@ Today, you'll practice doing a tech test.
 
 # Reflections
 
-Overall this was a challenging exercise that allowed me to improve my testing capability with jest as well as dependency injection with classes. I struggled to find an effective way to test the readline CLI i had created and therefore this remains a challenge to explore in the future. I would also like to create a Parent class of bank that the client accounts could be stored in.
+Overall this was a challenging exercise that allowed me to improve my testing capability with jest as well as dependency injection with classes. I struggled to find an effective way to test the readline CLI i had created and therefore this remains a challenge to explore in the future. I would also like to create a Parent class of bank that the client accounts could be stored in.  This would require creating and linking a database to the current program.
 
-The biggest challenge turned out to be accessing the Transaction objects stored in the history of the account's array. I initially tried mapping but could not acces the objects nested inside and eventually found a simple for loop created the extra level of accesibility i needed to capture and print the values i needed to the terminal.
+The biggest challenge turned out to be accessing the Transaction objects stored in the history of the client account's array. I initially tried mapping but could not acces the objects nested inside and eventually found a simple forLoop created the extra level of accesibility i needed to capture and print the values i required to print to the terminal.
 
 I also found the import/export or require system hard to juggle when introducting boxen and this was resolved using "type":"module" in the package.json after some lengthy googling.
 
-The last stumbling block was formatting the date but i now will never forget .toLocaleDateString()! I had imported 'moment' but found that although very easy and simple to use it was hard again to export across classes and files.
-
-# Dependencies
-
-- To interact with the command line I used 'readline' which uses promises to wait for user input and then assess the next function.
-- I had included 'moment' in my dependencies but then realised I could use .toLocaleDateString(), a simpler and more appropriate approach
-- I used 'chalk' to colour the output green or red when account was debited or credited
-- I used Jest to test my code in unit tests for both classes
-- 'eslint' was used to clean up my code and ensure it was readable and followed standard javascript guidelines
-
+The last stumbling block was formatting the date but I now will never forget .toLocaleDateString()! I had imported 'moment' but found that although very easy and simple to use it was hard again to export across classes and files.
 
 ### Acceptance criteria
 
