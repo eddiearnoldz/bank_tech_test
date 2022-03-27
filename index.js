@@ -46,7 +46,8 @@ bankManager()
 
 
 const clientChoice = (input) => {
-  if ((input) === '1') {
+  switch(input) {
+  case '1':
     rl.question('How much would you like to withdraw?\n', (amount) => {
       try {
         if (invalidEntry(amount)) {throw new Error('enter valid amount, e.g. 100')}
@@ -58,7 +59,8 @@ const clientChoice = (input) => {
         furtherAssistance()
       }
     })
-  } else if ((input) === '2') {
+    break;
+  case '2':
     rl.question('How much would you like to deposit?\n', (amount) => {
       try {
       if (invalidEntry(amount)){ throw new Error('enter valid amount, e.g. 100')}
@@ -70,26 +72,34 @@ const clientChoice = (input) => {
       furtherAssistance()
     }
     })
-  } else if ((input) === '3') {
+    break;
+ case '3':
     statement()
     furtherAssistance()
-  } else if ((input) === '4') {
+    break;
+  case '4':
     finalBalance()
     furtherAssistance()
-  } else if ((input) === '5') {
+    break;
+  case '5':
     console.log(`Have a nice day, ${user.name}`)
     rl.close()
-  }else {
+    break;
+  default :
     console.log('Choose one of the options by number\n')
     optionsQuestion()
+    break;
   }
 }
 const statement = () => {
-  console.log(boxen(' date || credit || debit || balance ', 
-  {title: `${user.name}'s Bank Statement`, titleAlignment: 'center', borderColor: 'yellow', borderStyle:'round'}));
-    user.getTransactionHistory().map(transaction =>{
-    transactionType(transaction)
-    })
+  renderStatementTitle()
+    historyEmpty() ?
+      console.log(boxen(' No recent transactions ', 
+      {borderColor: 'white', borderStyle:'round'}))
+    :
+      user.getTransactionHistory().map(transaction =>{
+        transactionType(transaction)
+      })
 }
 
 const finalBalance = () => {
@@ -110,4 +120,11 @@ const transactionType = (transaction) => {
 }
 const invalidEntry = (amount) => {
   return (amount.match(/^[0-9]+$/)) ? false : true;
+}
+const renderStatementTitle = () => {
+  console.log(boxen(' date || credit || debit || balance ', 
+  {title: `${user.name}'s Bank Statement`, titleAlignment: 'center', borderColor: 'yellow', borderStyle:'round'}));
+}
+const historyEmpty = () => {
+  return (user.getTransactionHistory.length === 0) ? true : false
 }

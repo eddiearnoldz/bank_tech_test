@@ -38,7 +38,6 @@ describe('Client class', () => {
     expect(client.getName()).toBe('John')
   })
   it("returns a default chosen name of 'Private User'", () => {
-    client.nameClient()
     expect(client.getName()).toBe('Private User')
   })
   it('throws an error if a string is inputted for amount', () => {
