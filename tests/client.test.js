@@ -21,11 +21,11 @@ describe('Client class', () => {
     client.debitBalance(10);
     expect(client.balance).toBe(-10);
   });
-  it('adds teh transactions and returns a current balance', () => {
+  it('adds the transactions and returns a current balance', () => {
     client.creditBalance(10);
     client.creditBalance(10);
     client.debitBalance(10);
-    expect(client.balance).toBe(10);
+    expect(client.getBalance()).toBe(10);
   });
   it('returns multiple transactions', () =>{
     client.creditBalance(10);
