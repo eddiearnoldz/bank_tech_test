@@ -42,6 +42,14 @@ I also found the import/export or require system hard to juggle when introductin
 
 The last stumbling block was formatting the date but i now will never forget .toLocaleDateString()! I had imported 'moment' but found that although very easy and simple to use it was hard again to export across classes and files.
 
+# Dependencies
+
+- To interact with the command line I used 'readline' which uses promises to wait for user input and then assess the next function.
+- I had included 'moment' in my dependencies but then realised I could use .toLocaleDateString(), a simpler and more appropriate approach
+- I used 'chalk' to colour the output green or red when account was debited or credited
+- I used Jest to test my code in unit tests for both classes
+- 'eslint' was used to clean up my code and ensure it was readable and followed standard javascript guidelines
+
 
 ### Acceptance criteria
 
