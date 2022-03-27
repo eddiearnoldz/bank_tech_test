@@ -60,12 +60,15 @@ const clientChoice = (input) => {
     })
   } else if ((input) === '2') {
     rl.question('How much would you like to deposit?\n', (amount) => {
-      if(invalidEntry(amount)){
-        throw new Error('enter valid amount, e.g. 100')
-      }
+      try {
+      if (invalidEntry(amount)){ throw new Error('enter valid amount, e.g. 100')}
       user.creditBalance(parseFloat(amount));
       console.log(chalk.green(`deposited £${amount} on ${date.toLocaleDateString('en-Gb')}`));
       furtherAssistance()
+    } catch(error) {
+      console.log(error.message)
+      furtherAssistance()
+    }
     })
   } else if ((input) === '3') {
     statement()
