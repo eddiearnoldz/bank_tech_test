@@ -38,6 +38,14 @@ const renderBankTitle = () => {
   console.log(boxen(" Welcome to Makers Bank, can i take your name? ", 
   {title: ` Makers Bank`, titleAlignment: 'center', borderColor: 'yellow', borderStyle:'round'}));
 }
+const renderInTheRed = () => {
+  console.log(boxen(` Balance     ||     £${user.balance}  `, 
+  {title: `${user.name}'s Current Account`, titleAlignment: 'center', borderColor: 'green', borderStyle:'round'}))
+}
+const renderInTheGreen = () => {
+  console.log(boxen(` Balance || £${user.balance} `, 
+  {title: `${user.name}'s Current Account`, titleAlignment: 'center', borderColor: 'red', borderStyle:'round'}));
+}
 
 const clientChoice = (input) => {
   switch(input) {
@@ -95,11 +103,9 @@ const statement = () => {
 }
 const finalBalance = () => {
   (user.balance >= 0) ?
-  console.log(boxen(` Balance     ||     £${user.balance}  `, 
-  {title: `${user.name}'s Current Account`, titleAlignment: 'center', borderColor: 'green', borderStyle:'round'}))
-:
-  console.log(boxen(` Balance || £${user.balance} `, 
-  {title: `${user.name}'s Current Account`, titleAlignment: 'center', borderColor: 'red', borderStyle:'round'}));
+    renderInTheRed()
+  :
+    renderInTheGreen()
 }
 const transactionType = (transaction) => {
   if(transaction.getType() === 'debit') {
