@@ -43,5 +43,16 @@ date || credit || debit || balance
 
 # Screenshots of CLI
 
-<img src="images/Screenshot 2022-03-26 at 00.49.24.png" alt="screen shot of CLI" width="400px"/>
-<img src="images/Screenshot 2022-03-26 at 00.50.19.png" alt="screen shot of CLI" width="400px"/>
+<img src="images/Screenshot 2022-03-27 at 16.07.18.png" alt="screen shot of CLI" width="400px"/>
+<img src="images/Screenshot 2022-03-27 at 16.07.57.png" alt="screen shot of CLI" width="400px"/>
+<img src="images/bank_tech_test_class_diagram.png" alt="class diagram" width="400px"/>
+
+# Reflections
+
+Overall this was a challenging exercise that allowed me to improve my testing capability with jest as well as dependency injection with classes. I struggled to find an effective way to test the readline CLI i had created and therefore this remains a challenge to explore in the future. I would also like to create a Parent class of bank that the client accounts could be stored in.
+
+The biggest challenge turned out to be accessing the Transaction objects stored in the history of the account's array. I initially tried mapping but could not acces the objects nested inside and eventually found a simple for loop created the extra level of accesibility i needed to capture and print the values i needed to the terminal.
+
+I also found the import/export or require system hard to juggle when introducting boxen and this was resolved using "type":"module" in the package.json after some lengthy googling.
+
+The last stumbling block was formatting the date but i now will never forget .toLocaleDateString()! I had imported 'moment' but found that it was hard again to export across classes and files. 

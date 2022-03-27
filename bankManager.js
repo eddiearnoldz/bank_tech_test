@@ -1,5 +1,4 @@
-import Client from './client.cjs'
-import Transaction from './transaction.cjs';
+import Client from './lib/client.cjs'
 import boxen from 'boxen';
 import readline from 'readline';
 import chalk from 'chalk';
@@ -18,7 +17,7 @@ const introQuestion = () => {
         console.log(`Nice to meet you, ${user.getName()}. `)
       }
       resolve()
-    })
+    });
   })
 }
 const optionsQuestion = () => {
@@ -26,7 +25,7 @@ const optionsQuestion = () => {
     rl.question(`How can I help today? ${optionsScript}`, (answer) => {
      clientChoice(answer)
     })
-  })
+  });
 }
 const furtherAssistance = () => {
   return new Promise((resolve, reject) => {
@@ -35,16 +34,10 @@ const furtherAssistance = () => {
     })
   })
 }
-
-const bankManager = async () => {
-  console.log(boxen(" Welcome to Maker's Bank, can i take your name? ", 
+const renderBankTitle = () => {
+  console.log(boxen(" Welcome to Makers Bank, can i take your name? ", 
   {title: ` Makers Bank`, titleAlignment: 'center', borderColor: 'yellow', borderStyle:'round'}));
-  await introQuestion()
-  await optionsQuestion()
-  await furtherAssistance()
 }
-bankManager()
-
 
 const clientChoice = (input) => {
   switch(input) {
@@ -100,7 +93,6 @@ const statement = () => {
     :
     mapTransactions()
 }
-
 const finalBalance = () => {
   (user.balance >= 0) ?
   console.log(boxen(` Balance     ||     £${user.balance}  `, 
@@ -125,12 +117,20 @@ const renderStatementTitle = () => {
   console.log(boxen(' date || credit || debit || balance ', 
   {title: `${user.name}'s Bank Statement`, titleAlignment: 'center', borderColor: 'yellow', borderStyle:'round'}));
 }
+
 const historyEmpty = () => {
   return (user.getTransactionHistory().length === 0) ? true : false
 }
-
 const mapTransactions = () => {
   for (let i = 0; i < user.transactionHistory.length; i++) {
     transactionType(user.transactionHistory[i])
    }
 }
+const bankManager = async () => {
+  renderBankTitle()
+  await introQuestion()
+  await optionsQuestion()
+  await furtherAssistance()
+}
+bankManager()
+

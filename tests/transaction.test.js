@@ -1,5 +1,5 @@
-const Transaction = require('../transaction.cjs')
-const Client = require('../client.cjs')
+const Transaction = require('../lib/transaction.cjs')
+const Client = require('../lib/client.cjs')
 
 describe('Transaction class', () => {
   

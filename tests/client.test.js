@@ -1,4 +1,4 @@
-const Client = require('../client.cjs')
+const Client = require('../lib/client.cjs')
 
 describe('Client class', () => {
   let client
