@@ -39,11 +39,11 @@ const renderBankTitle = () => {
   {title: ` Makers Bank`, titleAlignment: 'center', borderColor: 'yellow', borderStyle:'round'}));
 }
 const renderInTheRed = () => {
-  console.log(boxen(` Balance     ||     £${user.balance}  `, 
+  console.log(boxen(` Balance     ||     £${user.balance.toFixed(2)}  `, 
   {title: `${user.name}'s Current Account`, titleAlignment: 'center', borderColor: 'green', borderStyle:'round'}))
 }
 const renderInTheGreen = () => {
-  console.log(boxen(` Balance || £${user.balance} `, 
+  console.log(boxen(` Balance || £${user.balance.toFixed(2)} `, 
   {title: `${user.name}'s Current Account`, titleAlignment: 'center', borderColor: 'red', borderStyle:'round'}));
 }
 const clientChoice = (input) => {
@@ -111,7 +111,7 @@ const transactionType = (transaction) => {
   console.log(chalk.red(boxen(` ${transaction.getDate()} || || £${transaction.getAmount()} || £${transaction.getcurrentBalance()} `, 
     {dimBorder:'true', borderStyle:'round'})))
   } else {
-  console.log(chalk.green(boxen(` ${transaction.getDate()} || £${transaction.getAmount()} || £${transaction.getcurrentBalance()} `, 
+  console.log(chalk.green(boxen(` ${transaction.getDate()} || £${transaction.getAmount()} || || £${transaction.getcurrentBalance()} `, 
     {dimBorder:'true', borderStyle:'round'})))
   }
 }

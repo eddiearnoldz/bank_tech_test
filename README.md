@@ -40,7 +40,7 @@ The biggest challenge turned out to be accessing the Transaction objects stored 
 
 I also found the import/export or require system hard to juggle when introducting boxen and this was resolved using "type":"module" in the package.json after some lengthy googling.
 
-The last stumbling block was formatting the date but i now will never forget .toLocaleDateString()! I had imported 'moment' but found that it was hard again to export across classes and files.
+The last stumbling block was formatting the date but i now will never forget .toLocaleDateString()! I had imported 'moment' but found that although very easy and simple to use it was hard again to export across classes and files.
 
 
 ### Acceptance criteria
