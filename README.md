@@ -26,7 +26,7 @@ Today, you'll practice doing a tech test.
 - a grid/template is created to show the transactions and final balance in CLI
 
 
-# Screenshots of CLI
+# Screenshots of CLI and class diagram
 
 <img src="images/Screenshot 2022-03-27 at 16.07.18.png" alt="screen shot of CLI" width="400px"/>
 <img src="images/Screenshot 2022-03-27 at 16.07.57.png" alt="screen shot of CLI" width="400px"/>

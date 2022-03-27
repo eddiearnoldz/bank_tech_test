@@ -46,7 +46,6 @@ const renderInTheGreen = () => {
   console.log(boxen(` Balance || £${user.balance} `, 
   {title: `${user.name}'s Current Account`, titleAlignment: 'center', borderColor: 'red', borderStyle:'round'}));
 }
-
 const clientChoice = (input) => {
   switch(input) {
   case '1':
@@ -54,7 +53,7 @@ const clientChoice = (input) => {
       try {
         if (invalidEntry(amount)) {throw new Error('enter valid amount, e.g. 100')}
         user.debitBalance(parseFloat(amount));
-        console.log(chalk.red(`withdrew £${amount} on ${date.toLocaleDateString('en-Gb')}`));
+        console.log(chalk.red(`withdrew £${parseFloat(amount).toFixed(2)} on ${date.toLocaleDateString('en-Gb')}`));
         furtherAssistance()
       } catch(error) {
         console.log(error.message)
@@ -67,7 +66,7 @@ const clientChoice = (input) => {
       try {
       if (invalidEntry(amount)){ throw new Error('enter valid amount, e.g. 100')}
       user.creditBalance(parseFloat(amount));
-      console.log(chalk.green(`deposited £${amount} on ${date.toLocaleDateString('en-Gb')}`));
+      console.log(chalk.green(`deposited £${parseFloat(amount).toFixed(2)} on ${date.toLocaleDateString('en-Gb')}`));
       furtherAssistance()
     } catch(error) {
       console.log(error.message)
@@ -123,7 +122,6 @@ const renderStatementTitle = () => {
   console.log(boxen(' date || credit || debit || balance ', 
   {title: `${user.name}'s Bank Statement`, titleAlignment: 'center', borderColor: 'yellow', borderStyle:'round'}));
 }
-
 const historyEmpty = () => {
   return (user.getTransactionHistory().length === 0) ? true : false
 }
