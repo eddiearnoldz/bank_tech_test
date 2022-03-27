@@ -5,13 +5,17 @@ import chalk from 'chalk';
 const rl = readline.createInterface({input: process.stdin,output: process.stdout});
 const optionsScript = '\n 1. Withdraw money\n 2. Deposit money\n 3. See statement\n 4. Show balance\n 5. Exit\n'
 const date = new Date
-
+const user = new Client
 
 const introQuestion = () => {
   return new Promise((resolve, reject) => {
     rl.question("", (answer) => {
-      (!answer==="") ? user.nameClient(answer) : user.nameClient();
-      console.log(`Nice to meet you, ${user.getName()}. `)
+      if (answer==="") {
+        console.log(`Nice to meet you, ${user.getName()}. `)
+      } else {
+        user.nameClient(answer)
+        console.log(`Nice to meet you, ${user.getName()}. `)
+      }
       resolve()
     })
   })
@@ -30,7 +34,7 @@ const furtherAssistance = () => {
     })
   })
 }
-const user = new Client
+
 const bankManager = async () => {
   console.log(boxen(" Welcome to Maker's Bank, can i take your name? ", 
   {title: ` Makers Bank`, titleAlignment: 'center', borderColor: 'yellow', borderStyle:'round'}));
@@ -44,12 +48,21 @@ bankManager()
 const clientChoice = (input) => {
   if ((input) === '1') {
     rl.question('How much would you like to withdraw?\n', (amount) => {
-      user.debitBalance(parseFloat(amount));
-      console.log(chalk.red(`withdrew £${amount} on ${date.toLocaleDateString('en-Gb')}`));
-      furtherAssistance()
+      try {
+        if (invalidEntry(amount)) {throw new Error('enter valid amount, e.g. 100')}
+        user.debitBalance(parseFloat(amount));
+        console.log(chalk.red(`withdrew £${amount} on ${date.toLocaleDateString('en-Gb')}`));
+        furtherAssistance()
+      } catch(error) {
+        console.log(error.message)
+        furtherAssistance()
+      }
     })
   } else if ((input) === '2') {
     rl.question('How much would you like to deposit?\n', (amount) => {
+      if(invalidEntry(amount)){
+        throw new Error('enter valid amount, e.g. 100')
+      }
       user.creditBalance(parseFloat(amount));
       console.log(chalk.green(`deposited £${amount} on ${date.toLocaleDateString('en-Gb')}`));
       furtherAssistance()
@@ -91,4 +104,7 @@ const transactionType = (transaction) => {
 :
   console.log(chalk.green(boxen(transaction, 
     {dimBorder:'true', borderStyle:'round'})))
+}
+const invalidEntry = (amount) => {
+  return (amount.match(/^[0-9]+$/)) ? false : true;
 }

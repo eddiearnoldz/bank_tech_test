@@ -21,6 +21,12 @@ describe('Client class', () => {
     client.debitBalance(10)
     expect(client.balance).toBe(-10)
   })
+  it('adds teh transactions and returns a current balance', () => {
+    client.creditBalance(10)
+    client.creditBalance(10)
+    client.debitBalance(10)
+    expect(client.balance).toBe(10)
+  })
   it('returns multiple transactions', () =>{
     client.creditBalance(10)
     client.creditBalance(10)
@@ -34,5 +40,15 @@ describe('Client class', () => {
   it("returns a default chosen name of 'Private User'", () => {
     client.nameClient()
     expect(client.getName()).toBe('Private User')
+  })
+  it('throws an error if a string is inputted for amount', () => {
+    expect(() => {
+      client.creditBalance('a')
+    }).toThrow(('enter valid amount, e.g. 100')); 
+  })
+  it('throws an error if a negative number is inputted for amount', () => {
+    expect(() => {
+      client.creditBalance(-1)
+    }).toThrow(('enter valid amount, e.g. 100')); 
   })
 })

@@ -1,33 +1,44 @@
+
 const date = new Date
 
 class Client {
   constructor(){
   this.balance = 0
-  this.name
+  this.name = 'Private User'
   this.transactionHistory = []
   }
 
   debitBalance = (amount) => {
-    this.balance -= amount;
+    if (this.#invalidEntry(amount)){
+      throw new Error('enter valid amount, e.g. 100')
+    }
+    this.balance -= parseFloat(amount);
     this.transactionHistory.unshift(`${date.toLocaleDateString('en-Gb')} || || £${amount} || £${this.balance}`);
   }
 
   creditBalance = (amount) => {
-    this.balance += amount;
+    if (this.#invalidEntry(amount)){
+      throw new Error('enter valid amount, e.g. 100')
+    }
+    this.balance += parseFloat(amount);
     this.transactionHistory.unshift(`${date.toLocaleDateString('en-Gb')} || £${amount} || £${this.balance}`);
   }
 
-  nameClient = (name = 'Private User') => {
+  nameClient = (name) => {
     return this.name = name;
   }
 
   getName() {
-    return this.name
+    return this.name;
   }
 
-  getTransactionHistory = () => {
+  getTransactionHistory()  {
     return this.transactionHistory;
   }
-  
+
+  #invalidEntry(amount) {
+    return (typeof amount === 'string' || amount instanceof String || amount <= 0) ? true : false;
+  }
+
 }
 module.exports = Client;
