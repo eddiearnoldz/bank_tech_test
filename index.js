@@ -74,7 +74,7 @@ const clientChoice = (input) => {
     }
     })
     break;
- case '3':
+  case '3':
     statement()
     furtherAssistance()
     break;
