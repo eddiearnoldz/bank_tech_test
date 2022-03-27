@@ -1,4 +1,5 @@
 import Client from './client.cjs'
+import Transaction from './transaction.cjs';
 import boxen from 'boxen';
 import readline from 'readline';
 import chalk from 'chalk';
@@ -97,9 +98,7 @@ const statement = () => {
       console.log(boxen(' No recent transactions ', 
       {borderColor: 'white', borderStyle:'round'}))
     :
-      user.getTransactionHistory().map(transaction =>{
-        transactionType(transaction)
-      })
+    mapTransactions()
 }
 
 const finalBalance = () => {
@@ -111,12 +110,13 @@ const finalBalance = () => {
   {title: `${user.name}'s Current Account`, titleAlignment: 'center', borderColor: 'red', borderStyle:'round'}));
 }
 const transactionType = (transaction) => {
-  (transaction.includes('|| ||')) ?
-  console.log(chalk.red(boxen(transaction, 
+  if(transaction.getType() === 'debit') {
+  console.log(chalk.red(boxen(` ${transaction.getDate()} || || £${transaction.getAmount()} || £${transaction.getcurrentBalance()} `, 
     {dimBorder:'true', borderStyle:'round'})))
-:
-  console.log(chalk.green(boxen(transaction, 
+  } else {
+  console.log(chalk.green(boxen(` ${transaction.getDate()} || £${transaction.getAmount()} || £${transaction.getcurrentBalance()} `, 
     {dimBorder:'true', borderStyle:'round'})))
+  }
 }
 const invalidEntry = (amount) => {
   return (amount.match(/^[0-9]+$/)) ? false : true;
@@ -126,5 +126,11 @@ const renderStatementTitle = () => {
   {title: `${user.name}'s Bank Statement`, titleAlignment: 'center', borderColor: 'yellow', borderStyle:'round'}));
 }
 const historyEmpty = () => {
-  return (user.getTransactionHistory.length === 0) ? true : false
+  return (user.getTransactionHistory().length === 0) ? true : false
+}
+
+const mapTransactions = () => {
+  for (let i = 0; i < user.transactionHistory.length; i++) {
+    transactionType(user.transactionHistory[i])
+   }
 }
