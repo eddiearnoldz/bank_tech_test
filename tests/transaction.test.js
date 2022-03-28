@@ -6,20 +6,24 @@ describe('Transaction class', () => {
     const transaction = new Transaction('23/03/2001', 20, 'debit', 0);
     expect(transaction.getAmount()).toBe(20);
   });
+
   it('returns the date of transaction', () => {
     const transaction = new Transaction('23/03/2001', 20, 'debit', 0);
     expect(transaction.getDate()).toBe('23/03/2001');
   });
+
   it('returns the clients currentBalance', () => {
     const client = new Client();
     client.creditBalance(20);
     array = client.getTransactionHistory();
     expect(array[0].getcurrentBalance()).toBe('20.00');
   });
+
   it('returns the type of transaction', () => {
     const client = new Client();
     client.creditBalance(20);
     array = client.getTransactionHistory();
     expect(array[0].getType()).toBe('credit');
   });
+  
 });

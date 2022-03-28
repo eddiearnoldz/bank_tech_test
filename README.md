@@ -27,7 +27,7 @@
 
 - Clients should be members of a bank
 - they each have an account
-- the balance should be saved in the client object and altered with deposit or withdraw functions.    These take one argument. An amount. Date added on transaction
+- the balance should be saved in the client object and altered with deposit or withdraw functions. These take one argument. An amount. Date added on transaction
 - the balance could be rendered after each function is called in the specified layout.
 - a grid/template is created to show the transactions and final balance in CLI
 
