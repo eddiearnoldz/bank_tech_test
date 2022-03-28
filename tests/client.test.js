@@ -17,19 +17,19 @@ describe('Client class', () => {
 
   it('can increase the balance by a given amount', () => {
     client.creditBalance(10);
-    expect(client.balance).toBe(10);
+    expect(client.getBalance()).toBe("10.00");
   });
 
   it('can decrease the balance by a given amount', () => {
     client.debitBalance(10);
-    expect(client.balance).toBe(-10);
+    expect(client.getBalance()).toBe("-10.00");
   });
 
   it('adds the transactions and returns a current balance', () => {
     client.creditBalance(10);
     client.creditBalance(10);
     client.debitBalance(10);
-    expect(client.getBalance()).toBe(10);
+    expect(client.getBalance()).toBe("10.00");
   });
 
   it('returns multiple transactions', () =>{
